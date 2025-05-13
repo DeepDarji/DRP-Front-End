@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Vehicle</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-900 text-white">
+  <nav class="bg-gray-800 p-4">
+    <div class="container mx-auto flex justify-between">
+      <a href="index.html" class="text-xl font-bold">Driver Passport</a>
+      <div>
+        <a href="add-driver.html" class="mx-2 hover:text-gray-300">Add Driver</a>
+        <a href="add-vehicle.html" class="mx-2 hover:text-gray-300">Add Vehicle</a>
+        <a href="add-accident.html" class="mx-2 hover:text-gray-300">Add Accident</a>
+        <a href="view-driver.html" class="mx-2 hover:text-gray-300">View Driver</a>
+        <a href="contact.html" class="mx-2 hover:text-gray-300">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold text-center mb-6">Add Vehicle</h1>
+    <div class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg">
+      <div id="form">
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Driver ID</label>
+          <input id="driverId" type="number" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Vehicle Company</label>
+          <input id="company" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Vehicle Model</label>
+          <input id="model" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Registration Number</label>
+          <input id="regNumber" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">PUC Dates</label>
+          <input id="pucDates" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Owner Name</label>
+          <input id="ownerName" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Insurance Provider</label>
+          <input id="insuranceProvider" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Policy Number</label>
+          <input id="policyNumber" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Policy Validity</label>
+          <input id="policyValidity" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm mb-2">Insurance Type</label>
+          <select id="insuranceType" class="w-full p-2 bg-gray-700 rounded" required>
+            <option value="Comprehensive">Comprehensive</option>
+            <option value="Third-Party">Third-Party</option>
+          </select>
+        </div>
+        <button id="submitVehicle" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded">
+          Add Vehicle
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/contract.js"></script>
+  <script src="js/add-vehicle.js"></script>
+</body>
+</html>
