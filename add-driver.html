@@ -3,94 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Driver</title>
+  <title>Add Driver - Driver Reputation Passport</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-900 text-white">
-  <nav class="bg-gray-800 p-4">
-    <div class="container mx-auto flex justify-between">
-      <a href="index.html" class="text-xl font-bold">Driver Passport</a>
-      <div>
-        <a href="add-driver.html" class="mx-2 hover:text-gray-300">Add Driver</a>
-        <a href="add-vehicle.html" class="mx-2 hover:text-gray-300">Add Vehicle</a>
-        <a href="add-accident.html" class="mx-2 hover:text-gray-300">Add Accident</a>
-        <a href="view-driver.html" class="mx-2 hover:text-gray-300">View Driver</a>
-        <a href="contact.html" class="mx-2 hover:text-gray-300">Contact</a>
+<body class="bg-gray-100 font-sans text-gray-800">
+  <!-- Navigation -->
+  <nav class="bg-navy-blue text-white sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-extrabold tracking-tight animate__animated animate__pulse animate__infinite">Creda</a>
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="index.html#home" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Home
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="add-driver.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Add Driver
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="index.html#add-vehicle" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Add Vehicle
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="index.html#add-accident" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Add Accident
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="index.html#view-driver" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          View Driver
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <div class="relative dropdown">
+          <button class="relative px-3 py-2 text-lg font-medium hover:text-gold transition dropdown-toggle">
+            More
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold"></span>
+          </button>
+          <div class="dropdown-menu absolute hidden bg-navy-blue text-white shadow-lg rounded mt-2 border border-gold/20 z-50">
+            <a href="index.html#about" class="block px-4 py-2 hover:text-gold transition">About Us</a>
+            <a href="index.html#contact" class="block px-4 py-2 hover:text-gold transition">Contact Us</a>
+            <a href="index.html#faq" class="block px-4 py-2 hover:text-gold transition">FAQs</a>
+            <a href="index.html#privacy" class="block px-4 py-2 hover:text-gold transition">Privacy & Terms</a>
+          </div>
+        </div>
       </div>
+      <button class="md:hidden focus:outline-none" onclick="toggleMenu()">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-blue border-t border-gold/20">
+      <a href="index.html#home" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Home</a>
+      <a href="add-driver.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Driver</a>
+      <a href="index.html#add-vehicle" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Vehicle</a>
+      <a href="index.html#add-accident" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Accident</a>
+      <a href="index.html#view-driver" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">View Driver</a>
+      <a href="index.html#about" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">About Us</a>
+      <a href="index.html#contact" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Contact Us</a>
+      <a href="index.html#faq" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">FAQs</a>
+      <a href="index.html#privacy" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Privacy & Terms</a>
     </div>
   </nav>
-  <div class="container mx-auto py-10">
-    <h1 class="text-3xl font-bold text-center mb-6">Add Driver</h1>
-    <div class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg">
-      <div class="mb-4 text-center">
-        <button id="connectWallet" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Connect Wallet
-        </button>
-        <p id="walletStatus" class="text-sm mt-2">Wallet not connected</p>
-      </div>
-      <div id="form">
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Name</label>
-          <input id="name" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+
+  <!-- Add Driver Form -->
+  <section class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-navy-blue text-center mb-12 animate__animated animate__fadeIn">Add Driver</h1>
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      
+      <form id="add-driver-form">
+        <div class="mb-6">
+          <label for="name" class="block text-lg font-medium text-dark-gray mb-2">Name</label>
+          <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">DOB (YYYY-MM-DD)</label>
-          <input id="dob" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="dob" class="block text-lg font-medium text-dark-gray mb-2">DOB (YYYY-MM-DD)</label>
+          <input type="text" id="dob" name="dob" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Mobile Number</label>
-          <input id="mobile" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="mobile" class="block text-lg font-medium text-dark-gray mb-2">Mobile Number</label>
+          <input type="text" id="mobile" name="mobile" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Email</label>
-          <input id="email" type="email" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="email" class="block text-lg font-medium text-dark-gray mb-2">Email</label>
+          <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">License Number</label>
-          <input id="licenseNumber" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="licenseNumber" class="block text-lg font-medium text-dark-gray mb-2">License Number</label>
+          <input type="text" id="licenseNumber" name="licenseNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Permanent Address</label>
-          <input id="address" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="address" class="block text-lg font-medium text-dark-gray mb-2">Permanent Address</label>
+          <input type="text" id="address" name="address" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Blood Group</label>
-          <input id="bloodGroup" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="bloodGroup" class="block text-lg font-medium text-dark-gray mb-2">Blood Group</label>
+          <input type="text" id="bloodGroup" name="bloodGroup" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Vehicle Type</label>
-          <select id="vehicleType" class="w-full p-2 bg-gray-700 rounded" required>
-            <option value="Truck">Truck</option>
-            <option value="Car">Car</option>
-            <option value="Bike">Bike</option>
-            <option value="Other">Other</option>
-          </select>
+        <div class="mb-6">
+          <label for="vehicleType" class="block text-lg font-medium text-dark-gray mb-2">Vehicle Type</label>
+          <div class="flex space-x-4">
+            <label class="flex items-center">
+              <input type="radio" name="vehicleType" value="Truck" class="mr-2" required>
+              Truck
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="vehicleType" value="Car" class="mr-2">
+              Car
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="vehicleType" value="Bike" class="mr-2">
+              Bike
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="vehicleType" value="Other" class="mr-2">
+              Other
+            </label>
+          </div>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm mb-2">Image URL</label>
-          <input id="imageUrl" type="text" class="w-full p-2 bg-gray-700 rounded" required>
+        <div class="mb-6">
+          <label for="imageUrl" class="block text-lg font-medium text-dark-gray mb-2">Image URL</label>
+          <input type="text" id="imageUrl" name="imageUrl" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
         </div>
-        <button id="submitDriver" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded">
-          Add Driver
-        </button>
+        <div class="text-center">
+          <button id="submitDriver" type="submit" class="bg-green-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-600 transition transform hover:scale-105 shadow-lg">Add Driver</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- App Download Section -->
+  <section class="bg-navy-blue text-white py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Download Our Mobile App</h2>
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="w-full md:w-1/2 mb-8 md:mb-0">
+          <img src="assets/mobile.png" alt="Mobile App" class="w-64 mx-auto md:ml-12 animate__animated animate__fadeInLeft">
+        </div>
+        <div class="w-full md:w-1/2">
+          <p class="text-lg mb-6">Access driver records, verify identities, and manage profiles on the go with our secure, blockchain-powered mobile app.</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.1s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Instantly verify driver identities with unique IDs.</span>
+            </li>
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.2s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>View tamper-proof accident and vehicle records.</span>
+            </li>
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.3s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Access emergency contact and blood group data.</span>
+            </li>
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.4s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Secure admin controls for updating records.</span>
+            </li>
+          </ul>
+          <div class="text-center md:text-left">
+            <a href="#download" class="bg-gold text-navy-blue px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg animate__animated animate__pulse animate__infinite">Get the App</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <img src="assets/logo.png" alt="Driver Passport Logo" class="w-16 mb-4">
+          <h3 class="text-xl font-bold mb-2">Driver Reputation Passport</h3>
+          <p class="text-sm">A blockchain-based platform ensuring secure, transparent, and tamper-proof driver records for trust and safety.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Features</h3>
+          <ul class="space-y-2">
+            <li><a href="add-driver.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Driver</a></li>
+            <li><a href="index.html#add-vehicle" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Vehicle</a></li>
+            <li><a href="index.html#add-accident" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Accident</a></li>
+            <li><a href="index.html#view-driver" class="hover:text-gold transition transform hover:scale-105 inline-block">View Driver</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">About</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html#home" class="hover:text-gold transition transform hover:scale-105 inline-block">Home</a></li>
+            <li><a href="index.html#about" class="hover:text-gold transition transform hover:scale-105 inline-block">About Us</a></li>
+            <li><a href="index.html#contact" class="hover:text-gold transition transform hover:scale-105 inline-block">Contact Us</a></li>
+            <li><a href="index.html#faq" class="hover:text-gold transition transform hover:scale-105 inline-block">FAQs</a></li>
+            <li><a href="index.html#privacy" class="hover:text-gold transition transform hover:scale-105 inline-block">Privacy & Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="https://instagram.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="Instagram">
+              <i class="fab fa-instagram text-2xl"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="Twitter">
+              <i class="fab fa-twitter text-2xl"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="YouTube">
+              <i class="fab fa-youtube text-2xl"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="Facebook">
+              <i class="fab fa-facebook text-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <p class="text-center mt-12">Driver Reputation Passport © 2025</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/contract.js"></script>
   <script src="js/add-driver.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <!-- JavaScript for Mobile Menu and Dropdown -->
   <script>
-    // Update wallet status
-    window.addEventListener('load', () => {
-      const walletStatus = document.getElementById('walletStatus');
-      if (accounts && accounts.length > 0) {
-        walletStatus.textContent = `Connected: ${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
-        walletStatus.classList.add('text-green-500');
-      } else {
-        walletStatus.textContent = 'Wallet not connected';
-        walletStatus.classList.add('text-red-500');
+    // Mobile Menu Toggle
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // Dropdown Toggle
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    dropdownToggle.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add('hidden');
       }
     });
   </script>

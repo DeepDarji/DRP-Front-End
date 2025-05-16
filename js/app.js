@@ -11,11 +11,22 @@ async function initWeb3() {
         try {
           accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
           alert('Wallet connected: ' + accounts[0]);
-          // Trigger contract initialization after wallet connection
-          await initContract();
+          await initContract(); // Initialize contract after connection
         } catch (error) {
           alert('Failed to connect wallet: ' + error.message);
         }
+      });
+
+      // Handle account changes
+      window.ethereum.on('accountsChanged', (newAccounts) => {
+        accounts = newAccounts;
+        console.log('Accounts changed:', accounts);
+      });
+
+      // Handle disconnect (replacing 'close')
+      window.ethereum.on('disconnect', () => {
+        accounts = [];
+        console.log('MetaMask disconnected');
       });
     } catch (error) {
       console.error('User denied account access:', error);

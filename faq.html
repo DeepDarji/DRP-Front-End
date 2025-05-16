@@ -1,0 +1,351 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs - Driver Reputation Passport</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+  <!-- Navigation -->
+  <nav class="bg-navy-blue text-white sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-extrabold tracking-tight animate__animated animate__pulse animate__infinite">Driver Passport</a>
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="index.html#home" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Home
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="add-driver.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Add Driver
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="add-vehicle.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Add Vehicle
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="add-accident.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          Add Accident
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <a href="view-driver.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+          View Driver
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a>
+        <div class="relative dropdown">
+          <button class="relative px-3 py-2 text-lg font-medium hover:text-gold transition dropdown-toggle">
+            More
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold"></span>
+          </button>
+          <div class="dropdown-menu absolute hidden bg-navy-blue text-white shadow-lg rounded mt-2 border border-gold/20 z-50">
+            <a href="about-us.html" class="block px-4 py-2 hover:text-gold transition">About Us</a>
+            <a href="contact-us.html" class="block px-4 py-2 hover:text-gold transition">Contact Us</a>
+            <a href="faq.html" class="block px-4 py-2 hover:text-gold transition">FAQs</a>
+            <a href="privacy-terms.html" class="block px-4 py-2 hover:text-gold transition">Privacy & Terms</a>
+          </div>
+        </div>
+      </div>
+      <button class="md:hidden focus:outline-none" onclick="toggleMenu()">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-blue border-t border-gold/20">
+      <a href="index.html#home" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Home</a>
+      <a href="add-driver.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Driver</a>
+      <a href="add-vehicle.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Vehicle</a>
+      <a href="add-accident.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Accident</a>
+      <a href="view-driver.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">View Driver</a>
+      <a href="about-us.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">About Us</a>
+      <a href="contact-us.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Contact Us</a>
+      <a href="faq.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">FAQs</a>
+      <a href="privacy-terms.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Privacy & Terms</a>
+    </div>
+  </nav>
+
+  <!-- FAQs Section -->
+  <section class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-navy-blue text-center mb-12 animate__animated animate__fadeIn">Frequently Asked Questions</h1>
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-4">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.1s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>What is the purpose of this app?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>This app provides a decentralized platform to store and verify driver profiles, vehicle authenticity, and accident history, ensuring transparency, safety, and trust across mobility services.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>Who can use this platform?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>Location-based apps (Uber, Ola, Rapido), insurance companies, logistics firms, law enforcement agencies, and government bodies can integrate with this platform to validate driver credentials and make informed decisions.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.3s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>How is driver reputation calculated?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>The current version stores structured driver history (accidents, vehicle details, etc.). Future versions will include a reputation scoring system based on driver behavior, accident frequency, and third-party feedback.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.4s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>How does the platform ensure data authenticity?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>All critical data—driver profiles, vehicle details, and accident logs—are stored immutably on the Ethereum blockchain via smart contracts, preventing tampering or forgery.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.5s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>Can companies automatically filter out risky drivers?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>Yes. Integrated platforms can reject drivers with accident history, invalid documentation, or unverified vehicles automatically through smart contract checks.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>Is this system compatible with government regulations?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>Yes. It is designed to support future integration with government KYC systems, biometric IDs, and cross-state certification frameworks for drivers.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.7s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>How can emergency services benefit from this app?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>First responders can instantly access critical details like blood group, emergency contacts, and medical information in case of accidents or emergencies, improving response times.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.8s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>What technologies does this platform use?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>The backend runs on Solidity smart contracts deployed on Ethereum (Ganache). The frontend is built with Flutter, React, or HTML-JS using Web3.js or Web3.dart for blockchain interaction.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 0.9s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>Is this system scalable for large fleets and logistics companies?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>Absolutely. Fleet operators can use the app for driver onboarding, background checks, and tracking vehicle maintenance history for safety compliance and efficiency.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate__animated animate__fadeIn" style="animation-delay: 1s;">
+          <button class="w-full text-left px-6 py-4 bg-navy-blue text-white font-semibold flex justify-between items-center hover:bg-navy-blue-dark transition">
+            <span>What are the benefits of using this over traditional databases?</span>
+            <svg class="w-5 h-5 transform transition-transform faq-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-dark-gray">
+            <p>Unlike centralized systems, this blockchain-based solution offers decentralized trust, tamper-proof records, cross-platform accessibility, and enhanced safety and accountability without relying on a central authority.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Download Section -->
+  <section class="bg-navy-blue text-white py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Download Our Mobile App</h2>
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="w-full md:w-1/2 mb-8 md:mb-0">
+          <img src="https://placehold.co/300x600?text=Mobile+App" alt="Mobile App" class="w-64 mx-auto md:ml-12 animate__animated animate__fadeInLeft">
+        </div>
+        <div class="w-full md:w-1/2">
+          <p class="text-lg mb-6">Access driver records, verify identities, and manage profiles on the go with our secure, blockchain-powered mobile app.</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.1s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Instantly verify driver identities with unique IDs.</span>
+            </li>
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.2s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>View tamper-proof accident and vehicle records.</span>
+            </li>
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.3s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Access emergency contact and blood group data.</span>
+            </li>
+            <li class="flex items-start animate__animated animate__fadeInUp app-feature" style="animation-delay: 0.4s;">
+              <svg class="w-6 h-6 text-gold mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Secure admin controls for updating records.</span>
+            </li>
+          </ul>
+          <div class="text-center md:text-left">
+            <a href="#download" class="bg-gold text-navy-blue px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg animate__animated animate__pulse animate__infinite">Get the App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <img src="https://placehold.co/100?text=Logo" alt="Driver Passport Logo" class="w-16 mb-4">
+          <h3 class="text-xl font-bold mb-2">Driver Reputation Passport</h3>
+          <p class="text-sm">A blockchain-based platform ensuring secure, transparent, and tamper-proof driver records for trust and safety.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Features</h3>
+          <ul class="space-y-2">
+            <li><a href="add-driver.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Driver</a></li>
+            <li><a href="add-vehicle.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Vehicle</a></li>
+            <li><a href="add-accident.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Accident</a></li>
+            <li><a href="view-driver.html" class="hover:text-gold transition transform hover:scale-105 inline-block">View Driver</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">About</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html#home" class="hover:text-gold transition transform hover:scale-105 inline-block">Home</a></li>
+            <li><a href="about-us.html" class="hover:text-gold transition transform hover:scale-105 inline-block">About Us</a></li>
+            <li><a href="contact-us.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Contact Us</a></li>
+            <li><a href="faq.html" class="hover:text-gold transition transform hover:scale-105 inline-block">FAQs</a></li>
+            <li><a href="privacy-terms.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Privacy & Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="https://instagram.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="Instagram">
+              <i class="fab fa-instagram text-2xl"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="Twitter">
+              <i class="fab fa-twitter text-2xl"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="YouTube">
+              <i class="fab fa-youtube text-2xl"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="hover:text-gold transition transform hover:scale-105 social-icon" aria-label="Facebook">
+              <i class="fab fa-facebook text-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <p class="text-center mt-12">Driver Reputation Passport © 2025</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <!-- JavaScript for Mobile Menu, Dropdown, and FAQ Toggle -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    dropdownToggle.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (event) => {
+      if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add('hidden');
+      }
+    });
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.parentElement.nextElementSibling;
+        content.classList.toggle('hidden');
+        button.classList.toggle('rotate-180');
+      });
+    });
+  </script>
+</body>
+</html>

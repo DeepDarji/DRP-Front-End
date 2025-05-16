@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Vehicle - Driver Reputation Passport</title>
+  <title>About Us - Driver Reputation Passport</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -25,11 +25,11 @@
           Add Vehicle
           <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
         </a>
-        <a href="index.html#add-accident" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+        <a href="add-accident.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
           Add Accident
           <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
         </a>
-        <a href="index.html#view-driver" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
+        <a href="view-driver.html" class="relative px-3 py-2 text-lg font-medium hover:text-gold transition group">
           View Driver
           <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
         </a>
@@ -39,10 +39,10 @@
             <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gold"></span>
           </button>
           <div class="dropdown-menu absolute hidden bg-navy-blue text-white shadow-lg rounded mt-2 border border-gold/20 z-50">
-            <a href="index.html#about" class="block px-4 py-2 hover:text-gold transition">About Us</a>
-            <a href="index.html#contact" class="block px-4 py-2 hover:text-gold transition">Contact Us</a>
-            <a href="index.html#faq" class="block px-4 py-2 hover:text-gold transition">FAQs</a>
-            <a href="index.html#privacy" class="block px-4 py-2 hover:text-gold transition">Privacy & Terms</a>
+            <a href="about-us.html" class="block px-4 py-2 hover:text-gold transition">About Us</a>
+            <a href="contact-us.html" class="block px-4 py-2 hover:text-gold transition">Contact Us</a>
+            <a href="faq.html" class="block px-4 py-2 hover:text-gold transition">FAQs</a>
+            <a href="privacy-terms.html" class="block px-4 py-2 hover:text-gold transition">Privacy & Terms</a>
           </div>
         </div>
       </div>
@@ -56,74 +56,50 @@
       <a href="index.html#home" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Home</a>
       <a href="add-driver.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Driver</a>
       <a href="add-vehicle.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Vehicle</a>
-      <a href="index.html#add-accident" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Accident</a>
-      <a href="index.html#view-driver" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">View Driver</a>
-      <a href="index.html#about" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">About Us</a>
-      <a href="index.html#contact" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Contact Us</a>
-      <a href="index.html#faq" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">FAQs</a>
-      <a href="index.html#privacy" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Privacy & Terms</a>
+      <a href="add-accident.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Add Accident</a>
+      <a href="view-driver.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">View Driver</a>
+      <a href="about-us.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">About Us</a>
+      <a href="contact-us.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Contact Us</a>
+      <a href="faq.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">FAQs</a>
+      <a href="privacy-terms.html" class="block px-4 py-3 text-lg hover:bg-gray-700 hover:text-gold transition">Privacy & Terms</a>
     </div>
   </nav>
 
-  <!-- Add Vehicle Form -->
+  <!-- About Us Section -->
   <section class="container mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold text-navy-blue text-center mb-12 animate__animated animate__fadeIn">Add Vehicle</h1>
-    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-
-      <form id="add-vehicle-form">
-        <div class="mb-6">
-          <label for="driverId" class="block text-lg font-medium text-dark-gray mb-2">Driver ID</label>
-          <input type="number" id="driverId" name="driverId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="company" class="block text-lg font-medium text-dark-gray mb-2">Vehicle Company</label>
-          <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="model" class="block text-lg font-medium text-dark-gray mb-2">Vehicle Model</label>
-          <input type="text" id="model" name="model" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="regNumber" class="block text-lg font-medium text-dark-gray mb-2">Registration Number</label>
-          <input type="text" id="regNumber" name="regNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="pucDates" class="block text-lg font-medium text-dark-gray mb-2">PUC Dates (YYYY-MM-DD)</label>
-          <input type="text" id="pucDates" name="pucDates" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="ownerName" class="block text-lg font-medium text-dark-gray mb-2">Owner Name</label>
-          <input type="text" id="ownerName" name="ownerName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="insuranceProvider" class="block text-lg font-medium text-dark-gray mb-2">Insurance Provider</label>
-          <input type="text" id="insuranceProvider" name="insuranceProvider" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="policyNumber" class="block text-lg font-medium text-dark-gray mb-2">Policy Number</label>
-          <input type="text" id="policyNumber" name="policyNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label for="policyValidity" class="block text-lg font-medium text-dark-gray mb-2">Policy Validity (YYYY-MM-DD)</label>
-          <input type="text" id="policyValidity" name="policyValidity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" required>
-        </div>
-        <div class="mb-6">
-          <label class="block text-lg font-medium text-dark-gray mb-2">Insurance Type</label>
-          <div class="flex space-x-4">
-            <label class="flex items-center">
-              <input type="radio" name="insuranceType" value="Comprehensive" class="mr-2" required>
-              Comprehensive
-            </label>
-            <label class="flex items-center">
-              <input type="radio" name="insuranceType" value="Third-Party" class="mr-2">
-              Third-Party
-            </label>
+    <h1 class="text-4xl font-bold text-navy-blue text-center mb-12 animate__animated animate__fadeIn">About Us</h1>
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+      <div class="mb-12 animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
+        <h2 class="text-3xl font-bold text-dark-gray mb-6">Empowering Safer Roads Through Transparent Driver Data</h2>
+        <p class="text-dark-gray mb-4">At Driver Reputation Passport, we're building a decentralized ecosystem that promotes trust, safety, and transparency in mobility services. Our platform leverages blockchain technology to store and verify immutable driver profiles, accident history, and vehicle authenticity.</p>
+        <p class="text-dark-gray mb-4">Whether it's a rideshare platform verifying a new driver, an insurance company checking accident history, or emergency responders needing critical medical data during a crisis—our app ensures verified, tamper-proof information is just a few clicks away.</p>
+        <p class="text-dark-gray">We aim to bridge the gap between mobility platforms, logistics, law enforcement, and public safety agencies through secure, cross-platform access to validated driver data. Our mission is to eliminate fraud, reduce road accidents, and encourage responsible driving using smart contracts and decentralized technology.</p>
+      </div>
+      <div class="mb-12 animate__animated animate__fadeIn" style="animation-delay: 0.4s;">
+        <h2 class="text-3xl font-bold text-dark-gray mb-6">🚀 Vision</h2>
+        <p class="text-dark-gray">To create a global, trusted standard for driver data that enhances safety, accountability, and service quality across transportation networks.</p>
+      </div>
+      <div class="animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+        <h2 class="text-3xl font-bold text-dark-gray mb-6">🔧 Built With</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-navy-blue text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
+            <h3 class="text-xl font-semibold mb-2">Solidity & Ethereum</h3>
+            <p>Decentralized smart contracts for secure, tamper-proof data storage.</p>
+          </div>
+          <div class="bg-navy-blue text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
+            <h3 class="text-xl font-semibold mb-2">Web3.js / Web3.dart</h3>
+            <p>Secure frontend integration with blockchain networks.</p>
+          </div>
+          <div class="bg-navy-blue text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
+            <h3 class="text-xl font-semibold mb-2">Flutter / JavaScript / HTML / CSS</h3>
+            <p>Futuristic, multi-platform interfaces for seamless user experiences.</p>
+          </div>
+          <div class="bg-navy-blue text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
+            <h3 class="text-xl font-semibold mb-2">IPFS / Off-chain Storage</h3>
+            <p>Scalable, hybrid data management for efficient storage.</p>
           </div>
         </div>
-        <div class="text-center">
-          <button id="submitVehicle" type="submit" class="bg-green-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-600 transition transform hover:scale-105 shadow-lg">Add Vehicle</button>
-        </div>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -185,18 +161,18 @@
           <ul class="space-y-2">
             <li><a href="add-driver.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Driver</a></li>
             <li><a href="add-vehicle.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Vehicle</a></li>
-            <li><a href="index.html#add-accident" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Accident</a></li>
-            <li><a href="index.html#view-driver" class="hover:text-gold transition transform hover:scale-105 inline-block">View Driver</a></li>
+            <li><a href="add-accident.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Add Accident</a></li>
+            <li><a href="view-driver.html" class="hover:text-gold transition transform hover:scale-105 inline-block">View Driver</a></li>
           </ul>
         </div>
         <div>
           <h3 class="text-xl font-bold mb-4">About</h3>
           <ul class="space-y-2">
             <li><a href="index.html#home" class="hover:text-gold transition transform hover:scale-105 inline-block">Home</a></li>
-            <li><a href="index.html#about" class="hover:text-gold transition transform hover:scale-105 inline-block">About Us</a></li>
-            <li><a href="index.html#contact" class="hover:text-gold transition transform hover:scale-105 inline-block">Contact Us</a></li>
-            <li><a href="index.html#faq" class="hover:text-gold transition transform hover:scale-105 inline-block">FAQs</a></li>
-            <li><a href="index.html#privacy" class="hover:text-gold transition transform hover:scale-105 inline-block">Privacy & Terms</a></li>
+            <li><a href="about-us.html" class="hover:text-gold transition transform hover:scale-105 inline-block">About Us</a></li>
+            <li><a href="contact-us.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Contact Us</a></li>
+            <li><a href="faq.html" class="hover:text-gold transition transform hover:scale-105 inline-block">FAQs</a></li>
+            <li><a href="privacy-terms.html" class="hover:text-gold transition transform hover:scale-105 inline-block">Privacy & Terms</a></li>
           </ul>
         </div>
         <div>
@@ -227,24 +203,17 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/contract.js"></script>
-  <script src="js/add-vehicle.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   <!-- JavaScript for Mobile Menu and Dropdown -->
   <script>
-    // Mobile Menu Toggle
     function toggleMenu() {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     }
-
-    // Dropdown Toggle
     const dropdownToggle = document.querySelector('.dropdown-toggle');
     const dropdownMenu = document.querySelector('.dropdown-menu');
     dropdownToggle.addEventListener('click', () => {
       dropdownMenu.classList.toggle('hidden');
     });
-
-    // Close dropdown when clicking outside
     document.addEventListener('click', (event) => {
       if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
         dropdownMenu.classList.add('hidden');

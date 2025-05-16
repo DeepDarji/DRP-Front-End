@@ -1,3 +1,4 @@
+
 const CONTRACT_ADDRESS = '0xDd326b4472590943057258771453e286B75836D3'; // Replace with deployed contract address
 const CONTRACT_ABI = [
 	{
@@ -933,7 +934,7 @@ let contract;
 let contractInitialized = false;
 
 async function initContract() {
-  if (!web3 || !accounts) {
+  if (!web3 || !accounts || accounts.length === 0) {
     console.error('Web3 or accounts not initialized');
     return false;
   }
@@ -948,7 +949,6 @@ async function initContract() {
   }
 }
 
-// Ensure contract is initialized before use
 async function getContract() {
   if (!contractInitialized) {
     await initContract();
@@ -959,6 +959,7 @@ async function getContract() {
   return contract;
 }
 
-window.addEventListener('load', async () => {
-  await initContract();
-});
+// Remove automatic contract initialization on load
+// window.addEventListener('load', async () => {
+//   await initContract();
+// });

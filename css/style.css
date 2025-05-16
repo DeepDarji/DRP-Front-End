@@ -1,16 +1,150 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --navy-blue: #2C3E50;
+  --gold: #F1C40F;
+  --light-gray: #ECF0F1;
+  --dark-gray: #34495E;
+  --green: #27AE60;
+  --orange: #E67E22;
+}
 
 body {
-  font-family: 'Inter', sans-serif;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
 }
 
-input, select, textarea {
-  border: 1px solid #4b5563;
+.bg-navy-blue {
+  background-color: var(--navy-blue);
 }
 
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
+.text-navy-blue {
+  color: var(--navy-blue);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.bg-dark-gray {
+  background-color: var(--dark-gray);
+}
+
+.bg-green-500 {
+  background-color: var(--green);
+}
+
+.bg-orange-500 {
+  background-color: var(--orange);
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
+/* Futuristic Slideshow Animation */
+.slideshow {
+  position: relative;
+  height: 100%;
+}
+
+.slide {
+  display: none;
+  animation: futuristicSlide 1.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(44, 62, 80, 0.3), rgba(241, 196, 15, 0.1));
+  animation: scanline 4s linear infinite;
+}
+
+@keyframes futuristicSlide {
+  0% { transform: translateX(100%); opacity: 0; filter: blur(10px); }
+  50% { transform: translateX(0); opacity: 0.7; filter: blur(2px); }
+  100% { transform: translateX(0); opacity: 1; filter: blur(0); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Card Hover Animation */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Animation */
+button, a {
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover, a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+}
+
+/* Dropdown Animation */
+.dropdown-menu {
+  animation: slideDown 0.3s ease;
+  min-width: 160px;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Header Menu Animation */
+nav a, nav button {
+  position: relative;
+}
+
+nav a::after, nav button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--gold);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after, nav button:hover::after {
+  width: 100%;
+}
+
+/* Ensure dropdown visibility */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Footer Link Hover */
+footer a {
+  position: relative;
+  display: inline-block;
+}
+
+footer a:hover {
+  color: var(--gold);
+  transform: scale(1.1);
 }
